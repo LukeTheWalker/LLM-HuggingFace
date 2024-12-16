@@ -3,8 +3,8 @@ import shutil
 import subprocess
 
 # Define the array and the files to be copied
-max_local_batch = 16
-n_gpus = [2, 3, 4]
+max_local_batch = 15
+n_gpus = [1, 2, 3, 4]
 files_to_copy = ['LLM.py', 'launch_slurm_llm.sh']
 batch_script = 'launch_slurm_llm.sh'
 
@@ -28,6 +28,7 @@ for gpu in n_gpus:
 
         # formatted_content = file_content.format(bs_size_key=str(batch_size))
         formatted_content = file_content.replace('$$bs_size_key$$', str(batch_size))
+        formatted_content = formatted_content.replace('$$n_rows$$', str(60))
         
         with open(os.path.join(batch_size_dir, 'LLM.py'), 'w') as file:
             file.write(formatted_content)

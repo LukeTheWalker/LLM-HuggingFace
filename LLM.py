@@ -41,7 +41,7 @@ def tokenize_function(examples):
 
 # Tokenization
 tokenized_datasets = dataset.map(tokenize_function, batched=True)
-n_rows = 60
+n_rows = $$n_rows$$
 small_train_dataset = tokenized_datasets["train"].shuffle(seed=42).select(range(n_rows))
 small_eval_dataset = tokenized_datasets["test"].shuffle(seed=42).select(range(n_rows))
 
